@@ -53,7 +53,7 @@ export default {
             });
         },
         gotoDetail(id) {
-            this.$router.push({path : "../boardDetail"+id, params : id});
+            this.$router.push({path : "../boardDetail/"+id, params : id});
         }
     }
 }
