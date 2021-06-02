@@ -110,7 +110,7 @@ export default {
   methods: {
     fetch() {
       axios
-        .get("http://localhost:8080/board/" + this.$route.params.id)
+        .get("http://3.34.78.18:8081/board/" + this.$route.params.id)
         .then((res) => {
           this.vo = res.data;
         })
@@ -120,7 +120,7 @@ export default {
     },
     delete() {
       axios
-        .delete("http://localhost:8080/board/" + this.$route.params.id)
+        .delete("http://3.34.78.18:8081/board/" + this.$route.params.id)
         .then((res) => {
           alert("게시글이 삭제되었습니다.");
           this.$router.push({ path: "../" });
@@ -135,7 +135,7 @@ export default {
         content: this.replyContent,
       };
       axios
-        .post("http://localhost:8080/reply/" + this.$route.params.id, this.dto)
+        .post("http://3.34.78.18:8081/reply/" + this.$route.params.id, this.dto)
         .then((res) => {
           alert("등록완료!");
         })
@@ -151,7 +151,7 @@ export default {
     },
     makePageUrl(page, size) {
       return (
-        "http://localhost:8080/reply/" +
+        "http://3.34.78.18:8081/reply/" +
         this.$route.params.id +
         "?page=" +
         page +

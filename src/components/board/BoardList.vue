@@ -70,7 +70,7 @@ export default {
         });
     },
     makePageUrl(page, size) {
-      return "http://localhost:8080/board?page=" + page + "&size=" + size;
+      return "http://3.34.78.18:8081/board?page=" + page + "&size=" + size;
     },
     gotoDetail(id) {
       this.$router.push({ path: "./boardDetail/" + id, params: id });

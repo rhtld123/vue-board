@@ -44,7 +44,7 @@ export default {
                 writer : this.writer,
                 content : this.content
             };
-            axios.post("http://localhost:8080/board/",this.dto).then((res)=>{
+            axios.post("http://3.34.78.18:8081/board/",this.dto).then((res)=>{
                 alert("등록완료!");
                 console.log(res);
                 this.gotoDetail(res.data);
