@@ -138,6 +138,7 @@ export default {
         .post("http://3.34.78.18:8081/reply/" + this.$route.params.id, this.dto)
         .then((res) => {
           alert("등록완료!");
+          this.getList(0, 10);
         })
         .catch((error) => {
           console.log(error);
