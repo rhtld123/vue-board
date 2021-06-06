@@ -1,42 +1,17 @@
 <template>
-  <div id="grid">
+  <div class="container">
     <h1>게시판 목록</h1>
     <div id="boardTable">
       <h4 id="totalCount" align="left">총 게시글 : {{ list.totalElements }}</h4>
-      <table border="1" align="center">
-        <colgroup>
-          <col width="6%" />
-          <col width="*%" />
-          <col width="10%" />
-          <col width="15%" />
-        </colgroup>
-        <thead>
-          <tr>
-            <th>글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>조회수</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(list, id) in list.content" :key="id">
-            <td>{{ list.id }}</td>
-            <td>
-              <a href="javascript:;" @click="gotoDetail(`${list.id}`)">{{
-                list.title
-              }}</a>
-            </td>
-            <td>{{ list.writer }}</td>
-            <td>{{ list.viewcnt }}</td>
-          </tr>
-          <tr v-if="list.totalElements == 0">
-            <td colspan="4">게시글이 없습니다.</td>
-          </tr>
-        </tbody>
-      </table>
+      <b-table striped hover :items="list.content" :fields="fields">
+        <template #cell(title)="data">
+        <!-- `data.value` is the value after formatted by the Formatter -->
+        <a href="javascript:;" @click="gotoDetail(`${data.item.id}`)">{{ data.value }}</a>
+        </template>
+      </b-table>
       <Pagination v-bind:data="list"></Pagination>
       <div class="right" align="right">
-        <button type="button" id="add" @click="this.gotoRegist">글쓰기</button>
+        <b-button variant="success" @click="this.gotoRegist">글쓰기</b-button>
       </div>
     </div>
   </div>
@@ -51,6 +26,13 @@ export default {
   data() {
     return {
       list: "",
+      fields: [ 
+        { key: 'id', label: '글 번호' , thClass: 'width10'},
+        { key: 'title', label: '글 제목' , thClass: 'width40'},
+        { key: 'writer', label: '작성자' ,thClass: 'width20'},
+        { key: 'regDate', label: '작성 일자' , thClass: 'width20'}, 
+        { key: 'viewcnt', label: '조회수' ,thClass: 'width10'}
+        ]
     };
   },
   created() {
@@ -83,10 +65,7 @@ export default {
 </script>
 
 <style>
-#grid {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left: 270px;
-  margin-right: 270px;
-}
+table.b-table thead th.width10{ width: 10%; }
+table.b-table thead th.width20{ width: 20%; }
+table.b-table thead th.width30{ width: 30%; }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div id = "write">
+    <div class = "container">
       <h1>게시판 등록</h1>
       <table border="1" align="center">
           <colgroup>
@@ -20,7 +20,8 @@
           </tr>
       </table>
       <div id = "right" align = "right">
-          <button @click="this.submit">등록</button>
+        <b-button variant="warning" @click="this.gotoList">목록</b-button>
+        <b-button variant="success" @click="this.submit">글쓰기</b-button>
       </div>
   </div>
 </template>
@@ -54,18 +55,15 @@ export default {
         },
         gotoDetail(id) {
             this.$router.push({path : "../boardDetail/"+id, params : id});
+        },
+        gotoList() {
+        this.$router.push({ path: "/"});
         }
     }
 }
 </script>
 
 <style>
-#write {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: 270px;
-    margin-right: 270px;
-}
 .inputForm {
     width : 100%;
 }

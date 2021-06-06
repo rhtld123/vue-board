@@ -1,5 +1,5 @@
 <template>
-  <div id="read">
+  <div class="container">
     <h1>게시판 상세</h1>
     <table border="1" align="center">
       <colgroup>
@@ -12,7 +12,7 @@
         <td>글제목</td>
         <td>{{ vo.title }}</td>
         <td>작성일자</td>
-        <td>{{ vo.regDate.substring(0, 10) }}</td>
+        <td>{{ vo.regDate}}</td>
       </tr>
       <tr>
         <td>작성자</td>
@@ -26,11 +26,12 @@
       </tr>
     </table>
     <div id="right" align="right">
-      <button @click="this.delete">삭제</button>
+      <b-button variant="warning" @click="this.gotoList">목록</b-button>
+      <b-button variant="danger" @click="this.delete">삭제</b-button>
     </div>
     <br /><br />
 
-    <table border="1" align="center">
+    <table border="1" align="center" class = "container">
       <colgroup>
         <col width="8%" />
         <col width="10%" />
@@ -45,7 +46,7 @@
           <input v-model="replyWriter" id="replyWriter" size="90" />
         </td>
         <td rowspan="2" style="border-left-style: hidden">
-          <button type="button" id="add" @click="this.registReply">등록</button>
+          <b-button variant="success" @click="this.registReply">등록</b-button>
         </td>
       </tr>
       <tr>
@@ -80,7 +81,7 @@
         </tr>
       </tbody>
       <tr v-if="replyList.totalElements == 0">
-          <td colspan="2">댓글이 없습니다.</td>
+        <td colspan="2">댓글이 없습니다.</td>
       </tr>
     </table>
     <Pagination v-bind:data="replyList"></Pagination>
@@ -103,7 +104,6 @@ export default {
     };
   },
   created() {
-    console.log(this.$route);
     this.fetch();
     this.getList(0, 10);
   },
@@ -130,6 +130,11 @@ export default {
         });
     },
     registReply() {
+      if (this.replyContent.length > 100) {
+        alert("최대 글자수 초과");
+        this.replyContent= '';
+        return;
+      }
       this.dto = {
         writer: this.replyWriter,
         content: this.replyContent,
@@ -160,20 +165,14 @@ export default {
         size
       );
     },
+    gotoList() {
+      this.$router.push({ path: "/"});
+    }
   },
 };
 </script>
 
 <style>
-#content {
-  height: 300px;
-}
-#read {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left: 270px;
-  margin-right: 270px;
-}
 .textLeft {
   text-align: left;
 }
