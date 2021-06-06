@@ -43,7 +43,7 @@
       <tr style="border-bottom-style: hidden">
         <td class="textLeft" style="border-right-style: hidden">작성자명</td>
         <td class="textLeft">
-          <input v-model="replyWriter" id="replyWriter" size="90" />
+          <input v-model="replyWriter" id="replyWriter"  size = "50%"/>
         </td>
         <td rowspan="2" style="border-left-style: hidden">
           <b-button variant="success" @click="this.registReply">등록</b-button>
@@ -52,7 +52,7 @@
       <tr>
         <td class="textLeft" style="border-right-style: hidden">내용</td>
         <td class="textLeft" colspan="2">
-          <input v-model="replyContent" id="replyContent" size="90" />
+          <input v-model="replyContent" id="replyContent" size = "50%"/>
         </td>
       </tr>
     </table>
